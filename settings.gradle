@@ -1,0 +1,9 @@
+rootProject.name = 'ksk'
+include 'auth'
+include 'logger'
+include 'product'
+include 'common'
+include 'common:customer'
+findProject(':common:customer')?.name = 'customer'
+include 'users'
+

@@ -1,0 +1,90 @@
+buildscript {
+	ext {
+		springBootVersion = '3.1.2'
+		awsSdkVersion = '1.12.369'
+		awsStsVersion = '2.18.21'
+	}
+
+	repositories {
+		mavenCentral()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.7.4'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'java'
+	id 'idea'
+	id 'java-library'
+}
+
+group = 'com.ksk'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation("de.codecentric:spring-boot-admin-starter-client:3.0.0-M7")
+}
+
+allprojects{
+
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java-library'
+
+	subprojects {
+		group = 'com.ksk'
+		version = '0.0.1-SNAPSHOT'
+	}
+
+	repositories {
+		mavenCentral()
+		maven{
+			url "http://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release"
+			allowInsecureProtocol = true
+		}
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+		}
+	}
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.boot:spring-boot-starter-actuator'
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		implementation 'org.springframework.boot:spring-boot-starter'
+		implementation 'commons-io:commons-io:2.11.0'
+		implementation 'org.springframework.boot:spring-boot-starter-validation'
+		implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.3'
+		implementation group: 'org.apache.poi', name: 'poi', version: '5.2.3'
+		implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.9.0'
+		implementation 'org.springframework.retry:spring-retry:2.0.0'
+		implementation 'org.springframework.boot:spring-boot-starter-cache'
+		implementation group: 'org.springframework', name: 'spring-test'
+		implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.2'
+		runtimeOnly 'io.micrometer:micrometer-registry-prometheus:1.10.4'
+
+	}
+
+}
