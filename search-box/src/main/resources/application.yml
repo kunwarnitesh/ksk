@@ -1,0 +1,10 @@
+server:
+  port: 8181
+
+spring:
+  data:
+    elasticsearch:
+      cluster-name: product
+      cluster-nodes: localhost:9200
+      repositories:
+              enabled: true

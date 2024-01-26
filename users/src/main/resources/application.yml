@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:h2:mem:testdb  # H2 in-memory database URL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    h2:
+      console:
+        enabled: true
+  redis:
+    host: localhost # Redis server host
+    port: 6379      # Redis server port
+    # password:     # Uncomment and provide password if your Redis server requires authentication
+    # timeout: 3000 # Connection timeout in milliseconds (optional)
+    # ssl: false    # Set to true if using SSL (optional)
+    # jedis:
+    #   pool:
+    #     max-active: 8    # Maximum number of active connections (optional)
+    #     max-idle: 8      # Maximum number of idle connections (optional)
+    #     min-idle: 0      # Minimum number of idle connections (optional)
+    #     max-wait: -1ms   # Maximum time to wait for a connection from the pool (optional)
+    # lettuce:
+    #   pool:
+    #     max-active: 8    # Maximum number of active connections (optional)
+    #     max-idle: 8      # Maximum number of idle connections (optional)
+    #     min-idle: 0      # Minimum number of idle connections (optional)
+    #     max-wait: -1ms   # Maximum time to wait for a connection from the pool (optional)
