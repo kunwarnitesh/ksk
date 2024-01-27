@@ -1,6 +1,8 @@
 package com.ksk.array;
 
-public class ArrayProblem {
+import java.util.Arrays;
+
+public class ArraySet1 {
     public static void main(String[] args) {
         int[] array = {3, 2, 76, 12, 21};
         int[] array012 = {1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1};
@@ -19,7 +21,105 @@ public class ArrayProblem {
 //        rotateArrayByOne(array);
 //        printArray(array);
 
-        System.out.println("Max Sum Contiguous:  " + largestSumContiguous(largestSumArray));
+//        System.out.println("Max Sum Contiguous:  " + largestSumContiguous(largestSumArray));
+
+        int[] arr = { 7, 4, 8, 8, 8, 9 };
+        int k = 6;
+        int ans = getMinHeight(arr, k);
+        System.out.println(ans);
+    }
+
+    private static int getMinHeight(int[] array, int k) {
+        Arrays.sort(array);
+        int n =array.length;
+
+        int tempMin = array[0];
+        int tempMax = array[n-1];
+        int result = tempMax-tempMin;
+
+        for (int i=1;i< n;i++){
+            if (array[i]-k<0){
+                continue;
+            }
+            tempMin = Math.min(array[0]+k, array[i]-k);
+            tempMax = Math.max(array[n-1]-k,array[i-1]+k);
+
+            result = Math.min(result,tempMax-tempMin);
+        }
+
+        return result;
+
+    }
+
+    /***
+     * Union of sorted array
+     * @param
+     * @return
+     */
+    private static int[] unionOfSortedArray(int[] array1, int[] array2) {
+
+        int[] union = new int[array1.length+array2.length];
+        int i=0,n1= array1.length;
+        int j=0,n2 = array2.length;
+        int k=0;
+        while (i< n1 && j<n2){
+            if (array1[i]<array2[j]){
+                union[k] = array1[i];
+                i++;
+                k++;
+            }else if (array1[i]>array2[j]){
+                union[k] = array2[j];
+                j++;
+                k++;
+            }else{
+                i++;
+                j++;
+            }
+        }
+        while (i<n1){
+            union[k] = array1[i];
+            i++;
+            k++;
+        }
+        while (j<n2){
+            union[k] = array2[j];
+            i++;
+            k++;
+        }
+
+        return union;
+
+    }
+
+    private static int[] intersectionOfSortedArray(int[] array1, int[] array2) {
+        int[] union = new int[array1.length+array2.length];
+        int i=0,n1= array1.length;
+        int j=0,n2 = array2.length;
+        int k=0;
+        while (i< n1 && j<n2) {
+            if (array1[i] < array2[j]) {
+                i++;
+            } else if (array1[i] > array2[j]) {
+                j++;
+            } else {
+                union[k] = array1[i];
+                i++;
+                j++;
+                k++;
+            }
+        }
+        while (i<n1){
+            union[k] = array1[i];
+            i++;
+            k++;
+        }
+        while (j<n2){
+            union[k] = array2[j];
+            i++;
+            k++;
+        }
+        return union;
+
     }
 
     /***

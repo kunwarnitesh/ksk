@@ -1,6 +1,5 @@
 package com.ksk.entity;
 
-import com.ksk.enums.CustomerType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +19,4 @@ public class Customer implements Serializable {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private CustomerType customerType;
 }
