@@ -17,6 +17,8 @@ dependencies {
     implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '3.5.1'
     implementation group: 'com.google.guava', name: 'guava', version: '20.0'
     implementation group: 'org.apache.kafka', name: 'kafka-streams', version: '3.5.1'
+    implementation group: 'org.springframework', name: 'spring-aspects', version: '3.2.4.RELEASE'
+
 
 }
 

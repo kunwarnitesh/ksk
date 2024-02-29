@@ -177,7 +177,7 @@ public class StringSet1 {
         String s2 = "GXTXAYB";
         int m = s1.length();
         int n = s2.length();
-        int[][] dp = new int[s1.length() + 1][s2.length() + 1];
+        int[][] dp = new int[m + 1][n + 1];
         for (int i = 0; i < m + 1; i++) {
             for (int j = 0; j < n + 1; j++) {
                 dp[i][j] = -1;

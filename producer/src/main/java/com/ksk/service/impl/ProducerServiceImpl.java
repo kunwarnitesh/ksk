@@ -1,5 +1,6 @@
 package com.ksk.service.impl;
 
+import com.ksk.aop.Loggable;
 import com.ksk.dto.MessageDto;
 import com.ksk.service.ProducerService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 @Slf4j
+@Loggable
 public class ProducerServiceImpl implements ProducerService {
     @Autowired
     private KafkaTemplate<String,MessageDto> kafkaTemplate;
